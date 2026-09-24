@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@theme {
+	--color-neutral: hsl(0, 0%, 100%);
+	--color-neutral-200: hsl(250, 6%, 84%);
+	--color-neutral-300: hsl(240, 6%, 70%);
+	--color-neutral-600: hsl(243, 23%, 30%);
+	--color-neutral-700: hsl(243, 23%, 24%);
+	--color-neutral-800: hsl(243, 27%, 20%);
+	--color-neutral-900: hsl(243, 96%, 9%);
+
+	--color-secondary-500: hsl(28, 100%, 52%);
+
+	--color-primary-500: hsl(233, 67%, 56%);
+	--color-primary-700: hsl(248, 70%, 36%);
+
+	
+}
+
+@font-face {
+	font-family: "DMSans";
+	src: url("./assets/fonts/DM_Sans/static/DMSans-Medium.ttf");
+	font-display: swap;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: "BricolageGrotesque";
+	src: url("./assets/fonts/Bricolage_Grotesque/static/BricolageGrotesque-Bold.ttf");
+}
