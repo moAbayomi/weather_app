@@ -1,16 +1,25 @@
-import sunny from "./assets/images/icon-sunny.webp";
+import { getWeatherIcon } from "./utils/weatherCode";
 
-const WeatherInfo = function () {
+const WeatherInfo = function ({ units, current, location }) {
+	const date = new Date(current.time).toLocaleDateString("en-US", {
+		weekday: "long",
+		month: "short",
+		day: "numeric",
+		year: "numeric",
+	});
+
+	const windUnit = units.wind == "mph" ? "mph" : "km/h";
+	const precipUnit = units.precip === "in" ? "in" : "mm";
 	return (
 		<section className="flex flex-col gap-8 lg:col-span-2">
 			<div className="w-full text-center bg-red-400 bg-no-repeat bg-cover bg-center bg-[url('./assets/images/bg-today-small.svg')] md:bg-[url('./assets/images/bg-today-large.svg')] flex flex-col gap-4 p-6">
-				<h3 className="text-3xl font-semibold">Berlin, Germany</h3>
-				<p className="text-sm">Tuesday, August 5, 2025</p>
+				<h3 className="text-3xl font-semibold">{location.name}, {location.country}</h3>
+				<p className="text-sm">{date}</p>
 
 				<div className="flex items-center justify-center gap-6">
 					<span className="flex justify-center items-center">
 						<img
-							src={sunny}
+							src={getWeatherIcon(current.weather_code)}
 							alt=""
 							className="max-w-full"
 							height="72"
@@ -18,7 +27,7 @@ const WeatherInfo = function () {
 						/>
 					</span>
 					<p className="text-8xl">
-						68<span>&deg;</span>
+						{Math.round(current.temperature_2m)}<span>&deg;</span>
 					</p>
 				</div>
 			</div>
@@ -26,25 +35,25 @@ const WeatherInfo = function () {
 				<div className="bg-neutral-600 p-4 flex flex-col justify-between gap-4 rounded-md shadow-sm">
 					<p className="text-md">Feels Like</p>
 					<p className="text-xl">
-						64<span>&deg;</span>
+						{Math.round(current.apparent_temperature)}<span>&deg;</span>
 					</p>
 				</div>
 				<div className="bg-neutral-600 p-4 flex flex-col gap-4 rounded-md">
 					<p>Humidity</p>
 					<p>
-						46<span>%</span>
+						{current.relative_humidity}<span>%</span>
 					</p>
 				</div>
 				<div className="bg-neutral-600 p-4 flex flex-col gap-4 rounded-md">
 					<p>Wind</p>
 					<p>
-						9<span>mph</span>
+						{Math.round(current.wind_speed_10m)} <span>{windUnit}</span>
 					</p>
 				</div>
 				<div className="bg-neutral-600 p-4 flex flex-col gap-4 rounded-md">
 					<p>Precipitation</p>
 					<p>
-						0<span>in</span>
+						{current.precipitation}<span>{precipUnit}</span>
 					</p>
 				</div>
 			</div>

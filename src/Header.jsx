@@ -61,7 +61,7 @@ const Header = function ({ units, setUnits }) {
 	}, [open]);
 
 	const isImperial =
-		units.temp == "Farenheit" && units.wind == "mph" && units.precip == "in";
+		units.temp == "fahrenheit" && units.wind == "mph" && units.precip == "in";
 
 	function selectOption(groupKey, value) {
 		setUnits((prev) => ({ ...prev, [groupKey]: value }));
